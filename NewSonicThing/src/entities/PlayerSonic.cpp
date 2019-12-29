@@ -30,6 +30,7 @@
 #include "shieldgreen.h"
 #include "shieldmagnet.h"
 #include "../guis/guitexture.h"
+#include "sa2sonicmodel.h"
 
 #include <list>
 #include <vector>
@@ -58,7 +59,8 @@ PlayerSonic::PlayerSonic(float x, float y, float z)
     camDir.set(0, 0, -1);
     camDirSmooth.set(0, 0, -1);
 
-    playerModel = new ManiaSonicModel; INCR_NEW("Entity");
+    //playerModel = new ManiaSonicModel; INCR_NEW("Entity");
+    playerModel = new SA2SonicModel; INCR_NEW("Entity");
     Main_addEntity(playerModel);
 
     visible = false;
@@ -2102,7 +2104,7 @@ void PlayerSonic::updateAnimationValues()
     }
     else //running animation
     {
-        runAnimationCycle += (1.5f*currSpeed)*dt;
+        runAnimationCycle += (0.5*currSpeed)*dt;
         runAnimationCycle = fmodf(runAnimationCycle, 100.0f);
         if (runAnimationCycle < 0.0f)
         {
@@ -2481,6 +2483,7 @@ void PlayerSonic::loadVehicleInfo()
     #endif
     
     ManiaSonicModel::loadStaticModels();
+    SA2SonicModel::loadStaticModels();
     ManiaMightyModel::loadStaticModels();
 }
 
@@ -2491,6 +2494,7 @@ void PlayerSonic::deleteStaticModels()
     #endif
     
     ManiaSonicModel::deleteStaticModels();
+    SA2SonicModel::deleteStaticModels();
     ManiaMightyModel::deleteStaticModels();
 }
 

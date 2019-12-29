@@ -1,0 +1,38 @@
+	# Material Count: 4
+	
+newmtl attach_00010F14_material_0
+	Ns 20
+	Ni 0.02
+	Tr 0.0000
+	d 1
+	scrollX 0
+	scrollY 0
+	map_Kd eyes.png
+	
+newmtl attach_0000B0A8_material_0
+	Ns 20
+	Ni 0.02
+	Tr 0.0000
+	d 1
+	scrollX 0
+	scrollY 0
+	map_Kd stx_00.png
+	
+newmtl attach_0000F144_material_0
+	Ns 20
+	Ni 0.02
+	Tr 0.0000
+	d 1
+	scrollX 0
+	scrollY 0
+	map_Kd sonic_soapshoes.png
+	
+newmtl attach_0000C6D4_material_0
+	Ns 20
+	Ni 0.02
+	Tr 0.0000
+	d 1
+	scrollX 0
+	scrollY 0
+	map_Kd stx_01.png
+	
