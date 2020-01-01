@@ -101,8 +101,6 @@ private:
     void playRocketLaunchSoundLoop();
     //If the rocket has started moving, the startup animation has finished
     bool rocketStartedMoving();
-    //Calculate the player's position so they hold the rocket handle
-    Vector3f calculateNewPlayerPosition();
     //Calculates the new position of the rocket for the new frame
     Vector3f calculateNewRocketPosition();
     //Calculates the new value of percentOfPathCompleted, which is used to teleport the rocket and player to that position on the path
