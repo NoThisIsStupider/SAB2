@@ -184,6 +184,7 @@
     <ClCompile Include="src\entities\ManiaSonicModel.cpp" />
     <ClCompile Include="src\entities\MetalHarbor\MH_StageManager.cpp" />
     <ClCompile Include="src\entities\Point.cpp" />
+    <ClCompile Include="src\entities\PropellerSpring.cpp" />
     <ClCompile Include="src\entities\PyramidCave\PC_StageManager.cpp" />
     <ClCompile Include="src\entities\PyramidCave\PC_StaticObjects.cpp" />
     <ClCompile Include="src\entities\RaceGhost.cpp" />
@@ -194,6 +195,7 @@
     <ClCompile Include="src\entities\RingMoving.cpp" />
     <ClCompile Include="src\entities\Rocket.cpp" />
     <ClCompile Include="src\entities\Pulley.cpp" />
+    <ClCompile Include="src\entities\SA2SonicModel.cpp" />
     <ClCompile Include="src\entities\ShieldGreen.cpp" />
     <ClCompile Include="src\entities\ShieldMagnet.cpp" />
     <ClCompile Include="src\entities\SkyRail\SR_StageManager.cpp" />
@@ -206,6 +208,7 @@
     <ClCompile Include="src\entities\StagePass3.cpp" />
     <ClCompile Include="src\entities\StageTransparent.cpp" />
     <ClCompile Include="src\entities\Tutorial\T_StageManager.cpp" />
+    <ClCompile Include="src\entities\WindGust.cpp" />
     <ClCompile Include="src\fontMeshCreator\Character.cpp" />
     <ClCompile Include="src\fontMeshCreator\FontType.cpp" />
     <ClCompile Include="src\fontMeshCreator\GUINumber.cpp" />
@@ -329,6 +332,7 @@
     <ClInclude Include="src\entities\maniasonicmodel.h" />
     <ClInclude Include="src\entities\MetalHarbor\mhstagemanager.h" />
     <ClInclude Include="src\entities\point.h" />
+    <ClInclude Include="src\entities\propellerspring.h" />
     <ClInclude Include="src\entities\pulley.h" />
     <ClInclude Include="src\entities\PyramidCave\pcstagemanager.h" />
     <ClInclude Include="src\entities\PyramidCave\pcstaticobjects.h" />
@@ -339,6 +343,7 @@
     <ClInclude Include="src\entities\ring.h" />
     <ClInclude Include="src\entities\ringmoving.h" />
     <ClInclude Include="src\entities\rocket.h" />
+    <ClInclude Include="src\entities\sa2sonicmodel.h" />
     <ClInclude Include="src\entities\shieldgreen.h" />
     <ClInclude Include="src\entities\shieldmagnet.h" />
     <ClInclude Include="src\entities\SkyRail\srstagemanager.h" />
@@ -351,6 +356,7 @@
     <ClInclude Include="src\entities\stagepass3.h" />
     <ClInclude Include="src\entities\stagetransparent.h" />
     <ClInclude Include="src\entities\Tutorial\tstagemanager.h" />
+    <ClInclude Include="src\entities\windgust.h" />
     <ClInclude Include="src\fontMeshCreator\character.h" />
     <ClInclude Include="src\fontMeshCreator\fonttype.h" />
     <ClInclude Include="src\fontMeshCreator\guinumber.h" />

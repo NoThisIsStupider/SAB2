@@ -169,6 +169,23 @@ public:
     static bool pointIsInCylinder(Vector3f* point, Vector3f* cylinderEnd1, Vector3f* cylinderEnd2, float cylinderRadius);
 
     static Vector2f calcScreenCoordsOfWorldPoint(Vector3f* worldPoint);
+
+	//used for collision detection, basically inversely transforms a point so it it placed as if the other object is unrotated and at the origin
+	//arguments should be the point to rotate, the position of the other object, and the difference of two points on the other object, ideally the position and the position + the height since this is based on the y-axis
+	static Vector3f pointToOtherObjectLocalCoordinates(Vector3f* point, Vector3f* otherObjectPos, Vector3f* otherObjectAxi, float rotY = 0);
+
+	static bool pointIsInSphere(Vector3f* point, Vector3f* sphereCenter, float sphereRadius);
+
+	/*dimensions should be the width, length, and height in a single vector3f, similar idea for rotation*/
+	static bool pointIsInRectangularPrism(Vector3f* point, Vector3f* bottomCenter, Vector3f* topCenter, float length, float width, float rotY);
+
+	static bool cylinderIsInCylinder();
+
+	static bool cylinderIsInSphere();
+
+	static bool cylinderIsInRectangularPrism();
+
+	static float fclampf(float num, float min, float max);
 };
 
 #endif

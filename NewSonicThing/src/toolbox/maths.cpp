@@ -691,39 +691,6 @@ Vector4f Maths::calcPlaneValues(Vector3f* point, Vector3f* normal)
     return Maths::calcPlaneValues(&p1, &p2, &p3);
 }
 
-bool Maths::pointIsInCylinder(Vector3f* point, Vector3f* c1, Vector3f* c2, float cRadius)
-{
-    Vector3f xAxis(1, 0, 0);
-    Vector3f cDiff(c2);
-    cDiff = cDiff - c1;
-
-    float cLength = cDiff.length();
-    float angDiff = Maths::angleBetweenVectors(&cDiff, &xAxis);
-
-    Vector3f p(point);
-    p = p - c1; //move c1 to origin
-
-    if (fabsf(angDiff) < 0.0001f)
-    {
-        //skip rotate if the cylinder already is aligned with x axis
-    }
-    else if (fabsf(angDiff) > Maths::PI - 0.0001f)
-    {
-        //rotate 180 degrees
-        Vector3f yAxis(0, 1, 0);
-        p = Maths::rotatePoint(&p, &yAxis, Maths::toRadians(180));
-    }
-    else
-    {
-        Vector3f perpen = xAxis.cross(&cDiff);
-        p = Maths::rotatePoint(&p, &perpen, -angDiff); //rotate so cylinder faces xAxis
-    }
-
-    return (p.x >= 0 &&
-            p.x < cLength &&
-            p.y*p.y + p.z*p.z < cRadius*cRadius);
-}
-
 //coordinates are 0,0 for middle of screen, -1, -1 for top left, 1,1 for bot right
 Vector2f Maths::calcScreenCoordsOfWorldPoint(Vector3f* worldPoint)
 {
@@ -758,4 +725,92 @@ Vector2f Maths::calcScreenCoordsOfWorldPoint(Vector3f* worldPoint)
     gl_Position.scale(1/scl);
 
     return Vector2f(gl_Position.x, gl_Position.y);
+}
+
+//add optional y rotation for rectangular prisms, rotY is radians
+Vector3f Maths::pointToOtherObjectLocalCoordinates(Vector3f* point, Vector3f* otherObjectPos, Vector3f* otherObjectAxis, float rotY)
+{
+	Vector3f yAxis(0, 1, 0);
+	float angleDiff = Maths::angleBetweenVectors(otherObjectAxis, &yAxis);
+
+	Vector3f p(point);
+
+	p = p - otherObjectPos; //move p to origin
+
+	if (fabsf(angleDiff) < 0.0001f)
+	{
+		//skip rotate if already aligned with y axis
+	}
+	else if (fabsf(angleDiff) > Maths::PI - 0.0001f) //pretty much exactly upside down on the y axis
+	{
+		//rotate 180 degrees
+		Vector3f xAxis(0, 1, 0);
+		p = Maths::rotatePoint(&p, &xAxis, Maths::toRadians(180));
+	}
+	else
+	{
+		Vector3f perpen = yAxis.cross(otherObjectAxis);
+		p = Maths::rotatePoint(&p, &perpen, -angleDiff); //rotate so object faces y axis
+	}
+
+	if (!(rotY < 0.0001f))
+	{
+		p = Maths::rotatePoint(&p, &yAxis, -rotY);
+	}
+
+	return p;
+}
+
+bool Maths::pointIsInCylinder(Vector3f* point, Vector3f* cylinderBottomCenter, Vector3f* cylinderTopCenter, float cRadius)
+{
+	Vector3f endToEndDiff(cylinderTopCenter);
+	endToEndDiff = endToEndDiff - cylinderBottomCenter;
+	float cLength = endToEndDiff.length();
+
+	Vector3f p = pointToOtherObjectLocalCoordinates(point, cylinderBottomCenter, &endToEndDiff);
+
+	return (p.y >= 0 &&
+		p.y < cLength &&
+		p.x*p.x + p.z*p.z < cRadius*cRadius);
+}
+
+bool Maths::pointIsInSphere(Vector3f* point, Vector3f* sphereCenter, float sphereRadius)
+{
+	Vector3f diff = *point - *sphereCenter;
+	//float distanceSquared = diff.length()*diff.length();
+	return (diff.lengthSquared() <= sphereRadius*sphereRadius);
+}
+
+//rotY is degrees
+bool Maths::pointIsInRectangularPrism(Vector3f* point, Vector3f* bottomCenter, Vector3f* topCenter, float length, float width, float rotY)
+{
+	Vector3f endToEndDiff(topCenter);
+	endToEndDiff = endToEndDiff - bottomCenter;
+	Vector3f dimensionsHalf = Vector3f(length, endToEndDiff.length(), width);
+
+	Vector3f p = pointToOtherObjectLocalCoordinates(point, bottomCenter, &endToEndDiff, Maths::toRadians(rotY));
+
+	return (p.x >= -dimensionsHalf.x && p.x <= dimensionsHalf.x &&
+		p.y >= 0 && p.y <= dimensionsHalf.y * 2 && //y is different because we're using the bottom center
+		p.z >= -dimensionsHalf.z && p.z <= dimensionsHalf.z);
+}
+
+bool Maths::cylinderIsInCylinder()
+{
+	return false;
+}
+
+bool Maths::cylinderIsInSphere()
+{
+	return false;
+}
+
+bool Maths::cylinderIsInRectangularPrism()
+{
+	return false;
+}
+
+float Maths::fclampf(float num, float min, float max)
+{
+	return fmaxf(min, fminf(num, max));
 }

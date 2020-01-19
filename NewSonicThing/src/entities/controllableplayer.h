@@ -19,8 +19,11 @@ public:
     Vector3f camDir;
     Vector3f camDirSmooth;
     Vector3f relativeUp;
+	bool isJumping = false;
     bool onGround = false;
     float canMoveTimer = 0.0f;
+	bool isBouncing = false;
+	bool justHomingAttacked = false;
 
     //Functions that every player must be able to handle in some way
 public:

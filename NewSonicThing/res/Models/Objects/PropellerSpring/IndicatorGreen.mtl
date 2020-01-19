@@ -1,0 +1,7 @@
+	# Material Count: 1
+	
+newmtl Mesh_0235.rip
+	Ns 20
+	Ni 0.02
+	map_Kd Tex_0045_0.png
+	

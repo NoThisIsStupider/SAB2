@@ -70,6 +70,7 @@
 #include "../entities/hunter.h"
 #include "../entities/bullet.h"
 #include "../entities/PyramidCave/pcstagemanager.h"
+#include "../entities/propellerspring.h"
 
 int LevelLoader::numLevels = 0;
 
@@ -1141,7 +1142,7 @@ void LevelLoader::processLine(char** dat, int datLength, std::list<Entity*>* chu
                         toFloat(dat[5]), toFloat(dat[6]),                  //dirX, dirZ
                         toFloat(dat[7]), toFloat(dat[8]));                 //displacementMax, speed
                     INCR_NEW("Entity");
-                    Main_addEntity(yellowMovingPlatform);
+                    chunkedEntities->push_back(yellowMovingPlatform);
                     return;
                 }
                 case 2: //Crate Platform
@@ -1153,7 +1154,7 @@ void LevelLoader::processLine(char** dat, int datLength, std::list<Entity*>* chu
                         toFloat(dat[7]), toFloat(dat[8]),                   //displacementMax, speed
                         toInt(dat[9]));                                     //Type: 0: long, 1: with box, 2: without box
                     INCR_NEW("Entity");
-                    Main_addEntity(cratePlatform);
+					chunkedEntities->push_back(cratePlatform);
                     return;
                 }
             }
@@ -1177,7 +1178,7 @@ void LevelLoader::processLine(char** dat, int datLength, std::list<Entity*>* chu
             Vector3f pos2(toFloat(dat[4]), toFloat(dat[5]), toFloat(dat[6]));
             Rocket* rocket = new Rocket(&pos1, &pos2);
             INCR_NEW("Entity");
-            Main_addEntity(rocket);
+			chunkedEntities->push_back(rocket);
             return;
         }
 
@@ -1269,7 +1270,19 @@ void LevelLoader::processLine(char** dat, int datLength, std::list<Entity*>* chu
 					toFloat(dat[6]), toFloat(dat[7]), toFloat(dat[8]) //radius, height, power
 			);
 			INCR_NEW("Entity");
-			Main_addEntity(windGust);
+			chunkedEntities->push_back(windGust);
+			return;
+		}
+
+		case 103: //PropellerSpring
+		{
+			PropellerSpring::loadStaticModels();
+			PropellerSpring* propellerSpring = new PropellerSpring(
+				toFloat(dat[1]), toFloat(dat[2]), toFloat(dat[3]), //position x,y,z
+				toFloat(dat[4]) //max height
+			);
+			INCR_NEW("Entity");
+			chunkedEntities->push_back(propellerSpring);
 			return;
 		}
 

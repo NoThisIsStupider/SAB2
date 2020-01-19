@@ -121,7 +121,7 @@ void Rocket::step()
         {
             //makeExhaustParticles(0.0f);
 
-            Global::gameMainPlayer->position = calculateNewPlayerPosition();
+            Global::gameMainPlayer->position = Vector3f(position);
 
             startupTimer -= dt;
         }

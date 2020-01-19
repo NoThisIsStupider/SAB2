@@ -45,7 +45,7 @@ private:
     const float gravityTerminal = -650.0f;
     const float gravityApproach = 0.45f;
 
-    bool isJumping = false;
+    //bool isJumping = false;
     const float jumpPower = 120.0f; //Initial speed you get form jump
     const float hoverPower = 170.0f; //How much hover adds to your vel
     const float hoverTimerThreshold = 1.0f; //How long you can hover for
@@ -123,11 +123,11 @@ private:
 
     const float bounceVel = -300.0f;
     const float bounceFactor = 0.7f;
-    bool isBouncing = false;
-    bool justBounced = false; //Are we in the air after doing a bounce?
+    //bool isBouncing = false;
+	bool justBounced = false; //Are we in the air after doing a bounce? used to check if you've hit the ground after the initial bounce input for superbounces
 
-    bool justHomingAttacked = false; //Are we in the air after doing a homing attack?
-    float homingAttackTimer = -1.0f; // less than 0 = can start a homing attack
+	//bool justHomingAttacked = false; //Are we in the air after doing a homing attack?
+	float homingAttackTimer = -1.0f; // less than 0 = can start a homing attack
     const float homingAttackTimerMax = 0.2f;
     bool isHomingOnPoint = false;
     const float homingAttackRangeMax =  115.0f;
@@ -299,6 +299,6 @@ public:
 
     void setOnPulley(bool newOnPulley);
 
-    Vector3f getCenterPosition();
+    Vector3f getCenterPosition();	
 };
 #endif

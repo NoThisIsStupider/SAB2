@@ -249,7 +249,7 @@ inline void MH_AircraftCarrierCart::setupModelWheelFront()
     wheelFront = new Body(&MH_AircraftCarrierCart::modelsWheelFront);
     wheelFront->setVisible(true);
     INCR_NEW("Entity");
-    Main_addEntity(wheelFront);
+    Main_addChunkedEntity(wheelFront);
     wheelFront->renderOrder = 1;
     wheelFront->setPosition(&position);
     wheelFront->setRotY(rotY);
@@ -260,7 +260,7 @@ inline void MH_AircraftCarrierCart::setupModelWheelBack()
     wheelBack = new Body(&MH_AircraftCarrierCart::modelsWheelBack);
     wheelBack->setVisible(true);
     INCR_NEW("Entity");
-    Main_addEntity(wheelBack);
+    Main_addChunkedEntity(wheelBack);
     wheelBack->renderOrder = 1;
     wheelBack->setPosition(&position);
     wheelBack->setRotY(rotY);
@@ -271,7 +271,7 @@ inline void MH_AircraftCarrierCart::setupModelTransparent()
     bodyTransparent = new Body(&MH_AircraftCarrierCart::modelsTransparent);
     bodyTransparent->setVisible(true);
     INCR_NEW("Entity");
-    Main_addEntity(bodyTransparent);
+    Main_addChunkedEntity(bodyTransparent);
     bodyTransparent->renderOrder = 1;
     bodyTransparent->setRotY(rotY);
 }

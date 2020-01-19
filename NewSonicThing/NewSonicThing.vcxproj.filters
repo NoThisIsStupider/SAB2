@@ -537,6 +537,15 @@
     <ClCompile Include="src\entities\PyramidCave\PC_StaticObjects.cpp">
       <Filter>Source Files\entities\PyramidCave</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\SA2SonicModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\WindGust.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\PropellerSpring.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\animation\animation.h">
@@ -952,6 +961,15 @@
     </ClInclude>
     <ClInclude Include="src\entities\PyramidCave\pcstaticobjects.h">
       <Filter>Source Files\entities\PyramidCave</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\sa2sonicmodel.h">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\windgust.h">
+      <Filter>Source Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\propellerspring.h">
+      <Filter>Source Files\entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
